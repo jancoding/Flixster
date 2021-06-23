@@ -3,6 +3,7 @@ package com.example.flixster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixster.adapters.MovieAdapter;
 import com.example.flixster.databinding.ActivityMainBinding;
 import com.example.flixster.models.Movie;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,9 +30,11 @@ import okhttp3.Headers;
 public class MainActivity extends AppCompatActivity {
 
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=585766a816164944e743abb85aa6bddd";
+    public static final String TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=585766a816164944e743abb85aa6bddd&language=en-US&page=1";
+    public static final String UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=585766a816164944e743abb85aa6bddd&language=en-US&page=1";
     public static final String TAG = "MainActivity";
     List<Movie> movies;
-
+    MovieAdapter movieAdapter;
 
 
     @Override
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         movies = new ArrayList<>();
 
         // Create the adapter
-        final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
+        movieAdapter = new MovieAdapter(this, movies);
         // Set the adapter on the recycler view
         rvMovies.setAdapter(movieAdapter);
         // Set a Layout Manager the recycler view
@@ -56,8 +60,54 @@ public class MainActivity extends AppCompatActivity {
 
         rvMovies.addItemDecoration(new VerticalSpaceItemDecoration(48));
 
+
+        handleRequest(0);
+
+
+        // Get the ViewPager and set it's PagerAdapter so that it can display items
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(),
+                MainActivity.this));
+
+        // Give the TabLayout the ViewPager
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+        // switch recycler view content based on tab
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                movies.clear();
+                Log.d("MainActivity", "the position is: " + position);
+                handleRequest(position);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+    }
+
+    private void handleRequest(int type) {
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
+        String toRequestURL;
+        if (type == 0) {
+            toRequestURL = NOW_PLAYING_URL;
+        } else if (type == 1) {
+            toRequestURL = TOP_RATED_URL;
+        } else {
+            toRequestURL = UPCOMING_URL;
+        }
+        client.get(toRequestURL, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Headers headers, JSON json) {
                 Log.d(TAG, "onSuccess");
@@ -81,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
 

@@ -8,12 +8,12 @@ import androidx.viewpager.widget.ViewPager;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixster.adapters.MovieAdapter;
+import com.example.flixster.adapters.SampleFragmentPagerAdapter;
 import com.example.flixster.databinding.ActivityMainBinding;
 import com.example.flixster.models.Movie;
 import com.google.android.material.tabs.TabLayout;

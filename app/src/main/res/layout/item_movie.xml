@@ -11,11 +11,10 @@
         android:layout_width="118dp"
         android:layout_height="155dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="false"
+        android:layout_centerInParent="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        android:layout_centerInParent="true"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -40,6 +39,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="0dp"
+        android:layout_marginBottom="5dp"
         android:layout_toEndOf="@+id/ivPoster"
         tools:text="Luca and his best friend Alberto experience an unforgettable summer on the Italian Riviera. But all the fun is threatened by a deeply-held secret: they are sea monsters from another world just below the water’s surface." />
 </RelativeLayout>

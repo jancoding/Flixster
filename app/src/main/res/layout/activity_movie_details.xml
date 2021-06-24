@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f5cef2"
@@ -13,10 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ivVideo"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentEnd="false"
         android:layout_alignParentRight="false"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="-4dp"
@@ -44,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rbVoteAverage"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentEnd="false"
         android:layout_alignParentRight="true"
         android:layout_marginStart="9dp"
         android:layout_marginLeft="9dp"
@@ -60,8 +61,8 @@
         android:layout_height="191dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="39dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="9dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
@@ -70,7 +71,31 @@
         android:layout_height="58dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="108dp"
+        android:layout_marginStart="135dp"
         android:layout_marginTop="77dp"
         app:srcCompat="@drawable/play" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDetailOverview"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginLeft="9dp"
+        android:text="Reviews"
+        android:textSize="24sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReviews"
+        android:layout_width="match_parent"
+        android:layout_height="382dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="0dp" />
 </RelativeLayout>

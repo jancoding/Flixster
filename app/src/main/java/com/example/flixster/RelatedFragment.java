@@ -34,15 +34,18 @@ import okhttp3.Headers;
 public class RelatedFragment extends Fragment {
 
 
+    // tag for page argument
     public static final String ARG_PAGE = "ARG_PAGE";
+    // list of related movies
     ArrayList<Movie> related = new ArrayList<>();
+    // adapter for recycler view for related movies
     MovieAdapter relatedAdapter;
 
     public RelatedFragment() {
         // Required empty public constructor
-
     }
 
+    // static method for new instance of RelatedFragment that takes in page argument
     public static RelatedFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -62,10 +65,10 @@ public class RelatedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_related, container, false);
+        // if necessary sets up related view
         if (getActivity() instanceof MovieDetailsActivity) {
             setUpRelated(view);
         }
-        Log.d("hi", "created a fragment");
         return view;
     }
 
@@ -77,19 +80,21 @@ public class RelatedFragment extends Fragment {
         rvRelated.setAdapter(relatedAdapter);
         // Set a Layout Manager the recycler view
         rvRelated.setLayoutManager(new LinearLayoutManager(getActivity()));
-
+        // adds vertical space
         rvRelated.addItemDecoration(new VerticalSpaceItemDecoration(48));
+        // retrieves and displays related movies
         getRelatedMovies();
 
     }
 
+    // retrieves and displays related movies
     public void getRelatedMovies() {
 
-
+        // Unwraps the movie passed in to get related movies of
         Movie movie = (Movie) Parcels.unwrap(getActivity().getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         String RELATED_MOVIES = String.format("https://api.themoviedb.org/3/movie/%s/similar?api_key=585766a816164944e743abb85aa6bddd&language=en-US&page=1", movie.getId());
 
-
+        // HTTP Request to get related movies
         AsyncHttpClient client = new AsyncHttpClient();
         client.get(RELATED_MOVIES, new JsonHttpResponseHandler() {
             @Override
@@ -111,6 +116,7 @@ public class RelatedFragment extends Fragment {
         });
     }
 
+    // Used for vertical space between Recycler View components
     public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
 
         private final int verticalSpaceHeight;

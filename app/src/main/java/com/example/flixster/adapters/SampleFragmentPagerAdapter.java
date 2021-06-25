@@ -13,13 +13,18 @@ import com.example.flixster.PageFragment;
 import com.example.flixster.RelatedFragment;
 
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+
+    // number of tabs in his PageAdapter
     int PAGE_COUNT;
+    // titles of each tab
     private String tabTitles[];
     private Context context;
 
     public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.context = context;
+
+        // appropriately sets page count and page titles based on context
         if (context instanceof MainActivity) {
             PAGE_COUNT = 3;
             tabTitles = new String[] { "Now Playing", "Top Rated", "Upcoming" };
@@ -29,11 +34,13 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
         }
     }
 
+    // returns page count
     @Override
     public int getCount() {
         return PAGE_COUNT;
     }
 
+    // returns correct fragment based on activity type and tab position
     @Override
     public Fragment getItem(int position) {
         if (context instanceof MovieDetailsActivity && position == 0) {
@@ -46,6 +53,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     }
 
+    // retrieves the titles of each page
     @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position

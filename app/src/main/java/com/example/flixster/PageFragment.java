@@ -43,13 +43,14 @@ import okhttp3.Headers;
  */
 public class PageFragment extends Fragment {
 
+    // constants used in rest of code
     public static final String ARG_PAGE = "ARG_PAGE";
     public static final int DISPLAY_MOVIE_CODE = 20;
     public static String MOVIE_VIDEO = "";
     public static final String YOUTUBE_KEY = "YoutubeKey";
-
     private int mPage;
 
+    // Parts of view that need to set later
     TextView tvDetailTitle;
     TextView tvDetailOverview;
     RatingBar rbVoteAverage;
@@ -64,6 +65,7 @@ public class PageFragment extends Fragment {
     int radius = 20; // corner radius, higher value = more rounded
     int margin = 0; // crop margin, set to 0 for corners with no crop
 
+    // cresates a new instance of PageFragment with argument of page number
     public static PageFragment newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
@@ -75,25 +77,30 @@ public class PageFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // sets mPage to page number
         mPage = getArguments().getInt(ARG_PAGE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // inflates fragment view
         View view = inflater.inflate(R.layout.fragment_page, container, false);
+        // if from MovieDetailsActivity sets up movie details
         if (getActivity() instanceof MovieDetailsActivity) {
             setUpMovieDetails(view);
         }
-        Log.d("hi", "created a fragment");
         return view;
     }
 
+    // Sets up all the movie details to display in View
     public void setUpMovieDetails(View view) {
-                // unwrap movie that was passed in
+
+        // unwrap movie that was passed in
         Movie movie = (Movie) Parcels.unwrap(getActivity().getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));
 
+        // assigns appropriate values to all the view components from the movie
         tvDetailTitle = view.findViewById(R.id.tvDetailTitle);
         tvDetailOverview = view.findViewById(R.id.tvDetailOverview);
         rbVoteAverage = view.findViewById(R.id.rbVoteAverage);
@@ -101,7 +108,6 @@ public class PageFragment extends Fragment {
         rvReviews = view.findViewById(R.id.rvReviews);
         rlDetails = view.findViewById(R.id.rlDetails);
 
-        Log.d("testing", "" + rvReviews);
 
 
         reviews = new ArrayList<>();
@@ -114,15 +120,18 @@ public class PageFragment extends Fragment {
         // Set vertical spacing
         rvReviews.addItemDecoration(new VerticalSpaceItemDecoration(48));
 
+        // fills out title and overview
         tvDetailTitle.setText(movie.getTitle());
         tvDetailOverview.setText(movie.getOverview());
 
+        // loads image that will lead to youtube video
         Glide.with(this)
                 .load(movie.getBackdropPath())
                 .placeholder(R.drawable.flicks_backdrop_placeholder)
                 .transform(new RoundedCornersTransformation(radius, margin))
                 .into(ivVideo);
 
+        // sets rating and determines background color based on rating
         // vote average is 0..10, convert to 0..5 by dividing by 2
         float voteAverage = movie.getVoteAverage().floatValue();
         rbVoteAverage.setRating(voteAverage / 2.0f);
@@ -196,7 +205,7 @@ public class PageFragment extends Fragment {
 
 
 
-        // When backdrop image is click will lead to screen to play movie
+        // When backdrop image is clicked will lead to screen to play movie
         ivVideo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,6 +216,7 @@ public class PageFragment extends Fragment {
         });
     }
 
+    // Helps put vertical space between recycler view components
     public class VerticalSpaceItemDecoration extends RecyclerView.ItemDecoration {
 
         private final int verticalSpaceHeight;

@@ -31,6 +31,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     Context context;
     List<Movie> movies;
 
+    // constructor for the MovieAdapter class
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
         this.movies = movies;
@@ -41,18 +42,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @NotNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        Log.d("MovieAdapter", "onCreateViewHolder");
         View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
-
-
-
         return new ViewHolder(movieView);
     }
 
     // Populates data into the item through the holder
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        Log.d("MovieAdapter", "onBindViewHolder " + position);
         // Get the movie at the position
         Movie movie = movies.get(position);
         // Bind the movie data into the view holder
@@ -66,25 +62,34 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         return movies.size();
     }
 
+
+    // Custom ViewHolder class for the RecyclerView
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
+        // Attributes include tvTitle (title of movie), tvOverview (summary of movie), ivPoster (image of movie)
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
 
         public ViewHolder(@NonNull View itemView) {
 
+            // calling super ViewHolder constructor
             super(itemView);
 
+            // assigning all elements to connect to view
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             itemView.setOnClickListener(this);
         }
 
+        // populates view with information about movie retrieved from API
         public void bind(Movie movie, ViewHolder holder) {
+
+            // sets title text for movie
             tvTitle.setText(movie.getTitle());
 
+            // sets appropriate length overview text for movie
             String overview = movie.getOverview();
             if (overview.length() > 150) {
                 tvOverview.setText(movie.getOverview().substring(0, 150) + " [...]");
@@ -92,6 +97,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 tvOverview.setText(movie.getOverview());
             }
 
+            // Based on orientation loads movie image onto the page with rounded corners and appropriate placeholder
             String imageUrl;
 
             int radius = 20; // corner radius, higher value = more rounded
@@ -116,6 +122,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         }
 
+        // If a movie is clicked, gets the position and launches MovieDetailView Activity
         @Override
         public void onClick(View v) {
             // get item position

@@ -41,7 +41,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
         } else if (context instanceof MovieDetailsActivity && position == 1) {
             return RelatedFragment.newInstance(position + 1);
         } else {
-            return PageFragment.newInstance(position + 1);
+            return RelatedFragment.newInstance(position + 1);
         }
 
     }

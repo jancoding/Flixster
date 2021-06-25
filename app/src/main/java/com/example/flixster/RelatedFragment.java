@@ -81,7 +81,6 @@ public class RelatedFragment extends Fragment {
         rvRelated.addItemDecoration(new VerticalSpaceItemDecoration(48));
         getRelatedMovies();
 
-
     }
 
     public void getRelatedMovies() {

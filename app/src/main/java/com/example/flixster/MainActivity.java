@@ -29,9 +29,10 @@ import okhttp3.Headers;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=585766a816164944e743abb85aa6bddd";
-    public static final String TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated?api_key=585766a816164944e743abb85aa6bddd&language=en-US&page=1";
-    public static final String UPCOMING_URL = "https://api.themoviedb.org/3/movie/upcoming?api_key=585766a816164944e743abb85aa6bddd&language=en-US&page=1";
+
+    public static String NOW_PLAYING_URL;
+    public static String TOP_RATED_URL;
+    public static String UPCOMING_URL;
     public static final String TAG = "MainActivity";
     List<Movie> movies;
     MovieAdapter movieAdapter;
@@ -39,7 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Secrets key", getString(R.string.tmdbkey));
         super.onCreate(savedInstanceState);
+
+        // set up all the request URLS
+        String tmdb_key = getString(R.string.tmdbkey);
+        NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + tmdb_key;
+        TOP_RATED_URL = String.format("https://api.themoviedb.org/3/movie/top_rated?api_key=%s&language=en-US&page=1", tmdb_key);
+        UPCOMING_URL = String.format("https://api.themoviedb.org/3/movie/upcoming?api_key=%s&language=en-US&page=1", tmdb_key);
 
         // replacing this line below with view binding: setContentView(R.layout.activity_main);
         // activity_main.xml -> ActivityMainBinding
@@ -48,17 +56,17 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        RecyclerView rvMovies = findViewById(R.id.rvMovies);
+        //RecyclerView rvMovies = findViewById(R.id.rvMovies);
         movies = new ArrayList<>();
 
         // Create the adapter
         movieAdapter = new MovieAdapter(this, movies);
         // Set the adapter on the recycler view
-        rvMovies.setAdapter(movieAdapter);
+        binding.rvMovies.setAdapter(movieAdapter);
         // Set a Layout Manager the recycler view
-        rvMovies.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
-        rvMovies.addItemDecoration(new VerticalSpaceItemDecoration(48));
+        binding.rvMovies.addItemDecoration(new VerticalSpaceItemDecoration(48));
 
 
         handleRequest(0);
@@ -72,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         // Give the TabLayout the ViewPager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
 
 
         // switch recycler view content based on tab

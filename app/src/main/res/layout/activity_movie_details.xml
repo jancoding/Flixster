@@ -58,11 +58,11 @@
     <ImageView
         android:id="@+id/ivVideo"
         android:layout_width="249dp"
-        android:layout_height="191dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/sliding_tabs_detail"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="67dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="30dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
@@ -71,8 +71,8 @@
         android:layout_height="58dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="135dp"
-        android:layout_marginTop="77dp"
+        android:layout_marginStart="134dp"
+        android:layout_marginTop="127dp"
         app:srcCompat="@drawable/play" />
 
     <TextView
@@ -95,7 +95,23 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="19dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="5dp"
+        />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/sliding_tabs_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpagerDetail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white" />
+
 </RelativeLayout>

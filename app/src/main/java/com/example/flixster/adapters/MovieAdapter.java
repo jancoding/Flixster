@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.flixster.MovieDetailsActivity;
 import com.example.flixster.R;
+import com.example.flixster.databinding.ActivityMainBinding;
 import com.example.flixster.models.Movie;
 
 import org.jetbrains.annotations.NotNull;
@@ -35,13 +36,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         this.movies = movies;
     }
 
-    // Usually involves inflating a layout form XML and reutrning the holder
+    // Usually involves inflating a layout form XML and returning the holder
     @NonNull
     @NotNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         Log.d("MovieAdapter", "onCreateViewHolder");
         View movieView = LayoutInflater.from(context).inflate(R.layout.item_movie, parent, false);
+
+
+
         return new ViewHolder(movieView);
     }
 
@@ -52,7 +56,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         // Get the movie at the position
         Movie movie = movies.get(position);
         // Bind the movie data into the view holder
-        holder.bind(movie);
+        holder.bind(movie, holder);
 
     }
 
@@ -69,19 +73,28 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         ImageView ivPoster;
 
         public ViewHolder(@NonNull View itemView) {
+
             super(itemView);
+
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             itemView.setOnClickListener(this);
         }
 
-        public void bind(Movie movie) {
+        public void bind(Movie movie, ViewHolder holder) {
             tvTitle.setText(movie.getTitle());
-            tvOverview.setText(movie.getOverview());
+
+            String overview = movie.getOverview();
+            if (overview.length() > 150) {
+                tvOverview.setText(movie.getOverview().substring(0, 150) + " [...]");
+            } else {
+                tvOverview.setText(movie.getOverview());
+            }
+
             String imageUrl;
 
-            int radius = 10; // corner radius, higher value = more rounded
+            int radius = 20; // corner radius, higher value = more rounded
             int margin = 0; // crop margin, set to 0 for corners with no crop
 
 

@@ -156,4 +156,6 @@ public class MainActivity extends AppCompatActivity {
             outRect.bottom = verticalSpaceHeight;
         }
     }
+
+
 }

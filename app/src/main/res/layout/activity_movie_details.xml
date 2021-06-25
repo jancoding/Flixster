@@ -1,105 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rlDetails"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5cef2"
-    tools:context=".MovieDetailsActivity">
-
-    <TextView
-        android:id="@+id/tvDetailTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ivVideo"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentRight="false"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="-4dp"
-        android:layout_marginRight="-4dp"
-        android:text="Movie Title"
-        android:textAppearance="@android:style/TextAppearance.Large" />
-
-    <RatingBar
-        android:id="@+id/rbVoteAverage"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDetailTitle"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="0dp"
-        android:numStars="5"
-        android:stepSize="0.5" />
-
-    <TextView
-        android:id="@+id/tvDetailOverview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/rbVoteAverage"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="-9dp"
-        android:layout_marginRight="-9dp"
-        android:text="TextView" />
-
-    <ImageView
-        android:id="@+id/ivVideo"
-        android:layout_width="249dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/sliding_tabs_detail"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="30dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="117dp"
-        android:layout_height="58dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="127dp"
-        app:srcCompat="@drawable/play" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDetailOverview"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginLeft="9dp"
-        android:text="Reviews"
-        android:textSize="24sp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvReviews"
-        android:layout_width="match_parent"
-        android:layout_height="382dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="5dp"
-        />
+    android:orientation="vertical">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/sliding_tabs_detail"
@@ -114,4 +18,120 @@
         android:layout_weight="1"
         android:background="@android:color/white" />
 
-</RelativeLayout>
+</LinearLayout>
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:id="@+id/rlDetails"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="#f5cef2"-->
+<!--    tools:context=".MovieDetailsActivity">-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDetailTitle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/ivVideo"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentLeft="false"-->
+<!--        android:layout_alignParentEnd="false"-->
+<!--        android:layout_alignParentRight="false"-->
+<!--        android:layout_marginStart="9dp"-->
+<!--        android:layout_marginLeft="9dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:layout_marginEnd="-4dp"-->
+<!--        android:layout_marginRight="-4dp"-->
+<!--        android:text="Movie Title"-->
+<!--        android:textAppearance="@android:style/TextAppearance.Large" />-->
+
+<!--    <RatingBar-->
+<!--        android:id="@+id/rbVoteAverage"-->
+<!--        style="@style/Widget.AppCompat.RatingBar.Small"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tvDetailTitle"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_marginStart="9dp"-->
+<!--        android:layout_marginLeft="9dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:numStars="5"-->
+<!--        android:stepSize="0.5" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDetailOverview"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/rbVoteAverage"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentLeft="false"-->
+<!--        android:layout_alignParentEnd="false"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_marginStart="9dp"-->
+<!--        android:layout_marginLeft="9dp"-->
+<!--        android:layout_marginTop="0dp"-->
+<!--        android:layout_marginEnd="-9dp"-->
+<!--        android:layout_marginRight="-9dp"-->
+<!--        android:text="TextView" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/ivVideo"-->
+<!--        android:layout_width="249dp"-->
+<!--        android:layout_height="150dp"-->
+<!--        android:layout_below="@+id/sliding_tabs_detail"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_marginStart="67dp"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        tools:srcCompat="@tools:sample/avatars" />-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="117dp"-->
+<!--        android:layout_height="58dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_marginStart="134dp"-->
+<!--        android:layout_marginTop="127dp"-->
+<!--        app:srcCompat="@drawable/play" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tvDetailOverview"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_marginStart="9dp"-->
+<!--        android:layout_marginTop="9dp"-->
+<!--        android:layout_marginLeft="9dp"-->
+<!--        android:text="Reviews"-->
+<!--        android:textSize="24sp" />-->
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rvReviews"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="382dp"-->
+<!--        android:layout_below="@+id/textView2"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginStart="5dp"-->
+<!--        android:layout_marginTop="19dp"-->
+<!--        android:layout_marginBottom="0dp"-->
+<!--        android:layout_marginEnd="5dp"-->
+<!--        />-->
+
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/sliding_tabs_detail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:tabMode="fixed" />-->
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/viewpagerDetail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@android:color/white" />-->
+
+<!--</RelativeLayout>-->

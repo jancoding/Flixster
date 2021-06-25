@@ -8,7 +8,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.flixster.MainActivity;
+import com.example.flixster.MovieDetailsActivity;
 import com.example.flixster.PageFragment;
+import com.example.flixster.RelatedFragment;
 
 public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
     int PAGE_COUNT;
@@ -34,8 +36,14 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Log.d("testing usage", "in get item");
-        return PageFragment.newInstance(position + 1);
+        if (context instanceof MovieDetailsActivity && position == 0) {
+            return PageFragment.newInstance(position + 1);
+        } else if (context instanceof MovieDetailsActivity && position == 1) {
+            return RelatedFragment.newInstance(position + 1);
+        } else {
+            return PageFragment.newInstance(position + 1);
+        }
+
     }
 
     @Override

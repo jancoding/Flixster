@@ -44,6 +44,10 @@ GIF created with [Kap](https://getkap.co/).
 
 Describe any challenges encountered while building the app.
 
+- Secrets.xml file returning an integer instead of a string
+- Fragment views with tab layout appearing correctly
+- Rotation causing images to move
+
 ## Open-source libraries used
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
